@@ -1,0 +1,18 @@
+version: '3'
+services:
+  backstage:
+    image: backstage
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+
+    ports:
+      - '7007:7007'
+    volumes:
+      - ./soundcheck:/app/soundcheck
+      - ./examples/:/app/examples
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
